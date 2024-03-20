@@ -42,7 +42,6 @@ namespace Good_Food
         {
             if(e.ColumnIndex == dataGridView1.Columns["deletebtn"].Index)
             {
-                MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString());
                 object cantitateValue = dataGridView1.Rows[e.RowIndex].Cells[4].Value;
                 int cantitate = Convert.ToInt32(cantitateValue);
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];

@@ -179,17 +179,15 @@ namespace Good_Food.SqlHelper
                     cmd.Parameters.AddWithValue("@id", idClient);
                     cmd.Parameters.AddWithValue("@data", dateTime);
                     cmd.ExecuteNonQuery();
-                }
+                }conn.Close(); 
+                conn.Open();
                 using (SqlCommand cmd2 = new SqlCommand(cmd2Text, conn))
                 {
                    
                     cmd2.Parameters.AddWithValue("@id", idClient);
-                   SqlDataReader rd = cmd2.ExecuteReader();
-                   
-                        string s = rd["id_comanda"].ToString();
-
+    
                     
-                    idComanda = Convert.ToInt32(rd["id_comanda"]);
+                    idComanda = (int)cmd2.ExecuteScalar();
                     }
             }
             return idComanda;
@@ -208,8 +206,9 @@ namespace Good_Food.SqlHelper
                 using (SqlCommand cmd2 = new SqlCommand(cmd2Text, conn))
                 {
                     cmd2.Parameters.AddWithValue("@produs", produs);
-                    idprod=  cmd2.ExecuteNonQuery();
-                }
+                    idprod=  (int)cmd2.ExecuteScalar();
+                } conn.Close();
+                conn.Open();
                 using (SqlCommand cmd = new SqlCommand(cmdText, conn))
                 {
                     cmd.Parameters.AddWithValue("@idCom", idComanda);
